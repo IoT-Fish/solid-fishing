@@ -12,21 +12,17 @@ public:
 
     void assembleFishingRod(void) {
         assembleBlank(blankType);
-        attachReel();
+        mountReel();
         passLineThroughBlankRings(reelType);
     }
 
-    void attachFishingRig(void) {
-        if (rigType == eFreeRunning) {
-            printf("Attaching FREE RUNNING rig\n");
-        } else if (rigType == eHelicopter) {
-            printf("Attaching HELICOPTER rig\n");
-        } else {
-            printf("Unsupported RIG type %u\n", rigType);
-        }
+    void joinFishingRig(void) {
+        tieRig(rigType);
     }
 
-    void putOnWorm();
+    void hookWorm(void) {
+        printf("Pulling worm down onto the hook\n");
+    }
 
 private: 
     eBlankType blankType;
@@ -43,7 +39,7 @@ private:
         }
     }
 
-    void attachReel(void) {
+    void mountReel(void) {
         printf("Placing reel in reel seat and fasten it\n");
     }
 
@@ -61,12 +57,23 @@ private:
             printf("Unsupported REEL type %u\n", reelType);
         }
     }
+
+    void tieRig(eRigType rigType) {
+        if (rigType == eFreeRunning) {
+            printf("Tying FREE RUNNING rig\n");
+        } else if (rigType == eHelicopter) {
+            printf("Tying HELICOPTER rig\n");
+        } else {
+            printf("Unsupported RIG type %u\n", rigType);
+        }
+    }
 };
 
 int main (void) {
     RodPreparation feederRod(RodPreparation::eTwoPeace, RodPreparation::eFeeder, RodPreparation::eFreeRunning);    
     feederRod.assembleFishingRod();
-    feederRod.attachFishingRig();
+    feederRod.joinFishingRig();
+    feederRod.hookWorm();
     
     return 0;
 }
