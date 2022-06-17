@@ -16,9 +16,15 @@ public:
         passLineThroughBlankRings(reelType);
     }
 
-    void attachFishingRig();
-
-    void prepareFreeRunningRig();
+    void attachFishingRig(void) {
+        if (rigType == eFreeRunning) {
+            printf("Attaching FREE RUNNING rig\n");
+        } else if (rigType == eHelicopter) {
+            printf("Attaching HELICOPTER rig\n");
+        } else {
+            printf("Unsupported RIG type %u\n", rigType);
+        }
+    }
 
     void putOnWorm();
 
@@ -60,6 +66,7 @@ private:
 int main (void) {
     RodPreparation feederRod(RodPreparation::eTwoPeace, RodPreparation::eFeeder, RodPreparation::eFreeRunning);    
     feederRod.assembleFishingRod();
+    feederRod.attachFishingRig();
     
     return 0;
 }
