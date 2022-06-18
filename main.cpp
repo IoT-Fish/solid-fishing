@@ -1,13 +1,14 @@
 #include <iostream>
 #include <stdio.h>
 
-class RodPreparation {
-public: 
+class FishingRod {
+public:
+    const int totalBlankRings = 10;
     enum eBlankType { eTwoPeace, eTelescopic };
     enum eReelType { eFeeder, eBaitcaster };
     enum eRigType { eFreeRunning, eHelicopter };
 
-    RodPreparation(eBlankType blankType, eReelType reelType, eRigType rigType) :
+    FishingRod(eBlankType blankType, eReelType reelType, eRigType rigType) :
         blankType(blankType), reelType(reelType), rigType(rigType) {}
 
     void assembleFishingRod(void) {
@@ -31,9 +32,9 @@ private:
 
     void assembleBlank(eBlankType blankType) {
         if (blankType == eTelescopic) {
-            printf("Assembling TELESCOPIC rod by SPREADING OUT PIECES\n");
+            assembleTelescopicBlank();
         } else if (blankType == eTwoPeace) {
-            printf("Assembling TWO PEACE rod by JOINING TWO PIECES\n");
+            assembleTwoPieceBlank();
         } else {
             printf("Unsupported BLANK type %u\n", blankType);
         }
@@ -50,9 +51,9 @@ private:
 
     void releaseLine(eReelType reelType) {
         if (reelType == eFeeder) {
-            printf("Releasing line with FEEDER reel by OPENING BAIL\n");
+            releaseFeederLine();
         } else if (reelType == eBaitcaster) {
-            printf("Releasing line with BAITCASTER reel by PRESSING BUTTON\n");
+            releaseBaitcasterLine();
         } else {
             printf("Unsupported REEL type %u\n", reelType);
         }
@@ -60,20 +61,48 @@ private:
 
     void tieRig(eRigType rigType) {
         if (rigType == eFreeRunning) {
-            printf("Tying FREE RUNNING rig\n");
+            tieFreeRunningRig();
         } else if (rigType == eHelicopter) {
-            printf("Tying HELICOPTER rig\n");
+            tieHelicopterRig();
         } else {
             printf("Unsupported RIG type %u\n", rigType);
         }
     }
+
+    void assembleTelescopicBlank(void) {
+        printf("Assembling TELESCOPIC rod by SPREADING OUT PIECES\n");
+    }
+
+    void assembleTwoPieceBlank(void) {
+        printf("Assembling TWO PEACE rod by JOINING TWO PIECES\n");
+    }
+
+    void mountReel(void) {
+        printf("Placing reel in reel seat and fasten it\n");
+    }
+
+    void releaseFeederLine(void) {
+        printf("Releasing line with FEEDER reel by OPENING BAIL\n");
+    }
+
+    void releaseBaitcasterLine(void) {
+        printf("Releasing line with BAITCASTER reel by PRESSING BUTTON\n");
+    }
+
+    void tieFreeRunningRig(void) {
+        printf("Tying FREE RUNNING rig\n");
+    }
+
+    void tieHelicopterRig(void) {
+        printf("Tying HELICOPTER rig\n");
+    }
 };
 
 int main (void) {
-    RodPreparation feederRod(RodPreparation::eTwoPeace, RodPreparation::eFeeder, RodPreparation::eFreeRunning);    
+    FishingRod feederRod(FishingRod::eTwoPeace, FishingRod::eFeeder, FishingRod::eFreeRunning);
     feederRod.assembleFishingRod();
     feederRod.joinFishingRig();
     feederRod.hookWorm();
-    
+
     return 0;
 }
