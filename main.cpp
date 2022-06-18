@@ -40,13 +40,15 @@ private:
         }
     }
 
-    void mountReel(void) {
-        printf("Placing reel in reel seat and fasten it\n");
+    void threadRing(int ring) {
+        printf("Passing line through blank ring %i\n", ++ring);
     }
 
     void passLineThroughBlankRings(eReelType reelType) {
         releaseLine(reelType);
-        printf("Passing line through blank rings\n");
+        for (int ring = 0; ring < totalBlankRings; ring++) {
+            threadRing(ring);
+        }
     }
 
     void releaseLine(eReelType reelType) {
