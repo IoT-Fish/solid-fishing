@@ -25,7 +25,7 @@ public:
         printf("Pulling worm down onto the hook\n");
     }
 
-private: 
+private:
     eBlankType blankType;
     eReelType reelType;
     eRigType rigType;
