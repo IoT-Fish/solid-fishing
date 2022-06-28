@@ -18,7 +18,7 @@ public:
     }
 
     void cast(void) {
-        printf("Cast\n");
+        printf("Casting\n");
     }
 
     void retrieve(void) {
