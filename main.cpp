@@ -1,38 +1,31 @@
-#include <iostream>
 #include <stdio.h>
 
-class FishingRod {
+enum class SeatBoxAccessory {
+    feederArm,
+    buttRest
+};
+
+class SeatBox {
+private:
+    SeatBoxAccessory accessory;
 public:
-    void assembleRod(void) {
-        printf("Assembling TWO PEACE rod by JOINING TWO PIECES\n");
-        printf("Placing reel in reel seat and fasten it\n");
-        printf("Passing line through 10 blank RINGS\n");
-    }
+    SeatBox(SeatBoxAccessory accessoryType) : accessory{accessoryType} {}
 
-    void joinRig(void) {
-        printf("Tying FREE RUNNING rig\n");
-    }
-
-    void prepareHook(void) {
-        printf("Pulling WORM down onto the hook\n");
-    }
-
-    void cast(void) {
-        printf("Casting\n");
-    }
-
-    void retrieve(void) {
-        printf("Retrieving\n");
+    void attachAccessory() {
+        if (accessory == SeatBoxAccessory::feederArm) {
+            printf("Attaching seat box accessory - Feeder Arm\n");
+        } else if (accessory == SeatBoxAccessory::buttRest) {
+            printf("Attaching seat box accessory - Butt Rest\n");
+        }
     }
 };
 
 int main (void) {
-    FishingRod feederRod;
-    feederRod.assembleRod();
-    feederRod.joinRig();
-    feederRod.prepareHook();
-    feederRod.cast();
-    feederRod.retrieve();
+    SeatBox feederArm(SeatBoxAccessory::feederArm);
+    SeatBox buttRest(SeatBoxAccessory::buttRest);
+
+    feederArm.attachAccessory();
+    buttRest.attachAccessory();
 
     return 0;
 }
