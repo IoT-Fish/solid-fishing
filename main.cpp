@@ -1,28 +1,27 @@
 #include <stdio.h>
 
-enum class SeatBoxAccessory {
-    feederArm,
-    buttRest
+class SeatBox {
+public:
+    virtual void attachAccessory() = 0;
 };
 
-class SeatBox {
-private:
-    SeatBoxAccessory accessory;
+class FeederArm : public SeatBox {
 public:
-    SeatBox(SeatBoxAccessory accessoryType) : accessory{accessoryType} {}
+    void attachAccessory() override {
+        printf("Attaching seat box accessory - Feeder Arm\n");
+    }
+};
 
-    void attachAccessory() {
-        if (accessory == SeatBoxAccessory::feederArm) {
-            printf("Attaching seat box accessory - Feeder Arm\n");
-        } else if (accessory == SeatBoxAccessory::buttRest) {
-            printf("Attaching seat box accessory - Butt Rest\n");
-        }
+class ButtRest : public SeatBox {
+public:
+    void attachAccessory() override {
+        printf("Attaching seat box accessory - Butt Rest\n");
     }
 };
 
 int main (void) {
-    SeatBox feederArm(SeatBoxAccessory::feederArm);
-    SeatBox buttRest(SeatBoxAccessory::buttRest);
+    FeederArm feederArm;
+    ButtRest buttRest;
 
     feederArm.attachAccessory();
     buttRest.attachAccessory();
